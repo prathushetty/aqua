@@ -146,4 +146,4 @@ def predict():
             return render_template('index.html', predictions=predictions)
 
 if __name__=='__main__':
-    app.run(host="0.0.0.0",port=int("5050"),debug=True)
+    app.run(host="0.0.0.0",port=int("8000"),debug=True)
