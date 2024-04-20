@@ -1,0 +1,35 @@
+name: Deploy Python app to Azure Web App
+
+on:
+  workflow_run:
+    workflows: ["Build Python app"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: python-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_1139CAA19E2A498893D6080433C95034 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_70A287DBBC014949BEE7FDC8AE14E774 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AAC7BB27AE4943C8B44C263D41790D83 }}
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'black-moss-a59b855ceef24077976a1d29065af991'
+          slot-name: 'Production'
