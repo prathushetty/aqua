@@ -45,7 +45,6 @@ jobs:
         with:
           name: python-app
           path: |
-            cd flask_copy_2
             release.zip
             !venv/
 
