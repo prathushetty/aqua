@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intensive Aquaculture Supervising procedure</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    background-image: url('{{ url_for('static',filename='image1.jpg') }}');
+    background-size: cover;
+    background-position: center top; /* Adjusted background position */
+    font-family: Arial, sans-serif;
+    color: #333; /* Text color on top of the background image */
+}
+
+        .header {
+            display:flex;
+            justify-content: space-between;
+            align-items: center; /* Semi-transparent gray background color for the header */
+            padding: 10px;
+        }
+
+        .logo {
+            width: 200px;
+            height: 100px;
+            display: block;
+        }
+
+        .logo-right {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 28px;
+            color: #000; /* Black color for "Fish Classifier" heading */
+        }
+
+        input[type="file"], button[type="submit"] {
+            background-color: #007bff; /* Blue background color for input */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        button[type="submit"] {
+            background-color: #28a745; /* Green color for prediction button */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .video-frame {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .prediction h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .prediction ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .form-container {
+            text-align: center;
+            margin-top: 50px; /* Adjust margin-top as needed */
+        }
+
+        form {
+            display: inline-block;
+        }
+
+
+        .prediction li {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            color: #ff0000;
+        }
+
+        .frame-container {
+            display: none; /* Initially hide the frame container */
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .frame-img {
+            max-width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static',filename='logo RIT.png') }}" alt="Logo RIT" class="logo">
+        <h1>FISH ENUMERATION</h1>
+        <img src="{{ url_for('static',filename='logo aquaculture.png') }}" alt="Logo Aquaculture" class="logo-right">
+    </div>
+
+<div class="form-container"></div>
+    <form action="/count" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="video/*" required>
+        <button type="submit">Count</button>
+    </form>
+</div>
+
+    <div class="video-container">
+        {% if video_file %}
+            <video controls class="video-frame">
+                <source src="{{ url_for('static', filename='uploads/' + video_file) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% endif %}
+    </div>
+    {% if count %}
+        <div class="prediction">
+            <h2>Count for the Overall Video :</h2>
+            <h2>{{ count }}</h2>
+        </div>
+    {% endif %}
+
+
+    <script>
+        {% if predictions %} 
+            document.getElementById("frame-container").style.display = "block"; // Show frame container if predictions are available
+        {% endif %}
+    </script>
+</body>
+</html>

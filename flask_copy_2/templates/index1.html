@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intensive Aquaculture Supervising procedure</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    background-image: url('{{ url_for('static',filename='image2.jpg') }}');
+    background-size: cover;
+    background-position: center top; /* Adjusted background position */
+    font-family: Arial, sans-serif;
+    color: #333; /* Text color on top of the background image */
+}
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .header1{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 100px;
+        }
+
+        .logo-right {
+            width: 100px;
+            height: 100px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 10px;
+        }
+
+        .button-container button {
+            background-color: #ccc; /* Grey background color for buttons */
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static',filename='logo RIT.png') }}" alt="Logo RIT" class="logo">
+        <h1>DEPARTMENT OF ELECTRONICS AND COMMUNICATION</h1>
+        <img src="{{ url_for('static',filename='logo aquaculture.png') }}" alt="Logo Aquaculture" class="logo-right">
+    </div>
+
+    <h1 class="header1">DESIGN AND DEVELOPMENT OF INTENSIVE AQUACULTURE SUPERVISING PROCEDURE</h1>
+    <form action="/fish-classifier" method="get" class="button-container">
+        <button type="submit">FISH CLASSIFIER</button>
+    </form>
+    <form action="/fish-counting" method="get" class="button-container">
+        <button type="submit">FISH ENUMERATION</button>
+    </form>
+
+</body>
+</html>
